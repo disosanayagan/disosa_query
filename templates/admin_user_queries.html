@@ -1,0 +1,19 @@
+<h2>Queries by {{ username }}</h2>
+
+<table>
+<tr>
+  <th>Query</th>
+  <th>Energy (kWh)</th>
+  <th>CO₂ (kg)</th>
+  <th>Date</th>
+</tr>
+
+{% for q in queries %}
+<tr>
+  <td>{{ q.query_text }}</td>
+  <td>{{ q.energy_kwh }}</td>
+  <td>{{ q.co2_kg }}</td>
+  <td>{{ q.created_at }}</td>
+</tr>
+{% endfor %}
+</table>

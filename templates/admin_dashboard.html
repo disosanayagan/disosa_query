@@ -1,0 +1,21 @@
+<h2>Admin Dashboard</h2>
+
+<table>
+<tr>
+  <th>User</th>
+  <th>Email</th>
+  <th>Signup Time</th>
+  <th>View</th>
+</tr>
+
+{% for u in users %}
+<tr>
+  <td>{{ u.username }}</td>
+  <td>{{ u.email }}</td>
+  <td>{{ u.created_at }}</td>
+  <td>
+    <a href="/admin/user/{{ u.username }}">View Queries</a>
+  </td>
+</tr>
+{% endfor %}
+</table>

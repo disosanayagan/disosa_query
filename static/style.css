@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+     background-image: url("C:\xampp\htdocs\finalyearproject\templates\bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#side-container {
+    position: fixed;
+    top: 0;
+    right: -400px;   /* hidden initially */
+    width: 350px;
+    height: 100vh;
+    background: #ffffff;
+    border-left: 2px solid #ddd;
+    padding: 15px;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.4s ease;
+    z-index: 999;
+}
+
+#side-container.open {
+    right: 0;  /* slide in */
+}
+
+#side-container textarea {
+    width: 100%;
+    height: 90%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    resize: none;
+}
+
+
+
+/* Full page center */
+.page-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login box */
+.container {
+    background-image: url("C:\xampp\htdocs\finalyearproject\templates\bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* Heading */
+.container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Inputs */
+.container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Button */
+.container button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background: #0056b3;
+}
+
+/* Signup link */
+.switch {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.switch a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch a:hover {
+    text-decoration: underline;
+}

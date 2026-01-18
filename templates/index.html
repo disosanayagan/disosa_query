@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Disosa Query Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            margin: 0;
+            padding: 0;
+            height: 90px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .box {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+
+        .box h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .value {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Disosa Query Analyzer</h1>
+
+    <textarea id="query" placeholder="Enter your query here..."></textarea>
+
+    <button onclick="submitQuery()">Submit Query</button>
+
+    <!-- Result Box -->
+    <div class="box">
+        <h2>Result</h2>
+
+        <div class="value" id="response">
+            Response will appear here...
+        </div>
+
+        <p class="label">Engine Used: <span id="engine">-</span></p>
+    </div>
+
+    <!-- Statistics Box -->
+    <div class="box">
+        <h2>Today's Statistics</h2>
+
+        <p>Number of Queries: <span id="count">0</span></p>
+        <p>Total Energy Used (kWh): <span id="energy">0</span></p>
+        <p>Total CO₂ Emitted (kg): <span id="co2">0</span></p>
+    </div>
+</div>
+<script>
+function submitQuery() {
+    const query = document.getElementById("query").value;
+
+    if (query.trim() === "") {
+        alert("Please enter a query");
+        return;
+    }
+
+    fetch("/ask", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: query })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("response").innerText = data.response;
+        document.getElementById("engine").innerText = data.engine;
+
+        document.getElementById("count").innerText = data.stats.count;
+        document.getElementById("energy").innerText = data.stats.energy;
+        document.getElementById("co2").innerText = data.stats.co2;
+    })
+    .catch(error => {
+        console.error(error);
+        alert("Error connecting to server");
+    });
+}
+</script>
+
+</body>
+</html>
